@@ -1,0 +1,17 @@
+<div class="container col-8">
+  <h1>My tasks</h1>
+
+  <form action="">
+    <% @tasks.each do |task| %>
+      <% if task.completed %>
+        <input type="checkbox" id="task<%= task.id %>" name="task<%= task.id %>" value="task" checked>
+      <% else %>
+        <input type="checkbox" id="task<%= task.id %>" name="task<%= task.id %>" value="task">
+      <% end %>
+      <label for="task<%= task.id %>"><%= link_to task.title, task_path(task) %> <%= link_to "X", task_path(task), method: :delete, data: { confirm: "Are you sure?" } %></label>
+      <br>
+    <% end %>
+  </form>
+  <br>
+  <%= link_to '+ Add a task', tasks_new_path %>
+</div>
